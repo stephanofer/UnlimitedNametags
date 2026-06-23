@@ -9,7 +9,6 @@ import com.google.common.collect.Maps;
 import lombok.Getter;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.alexdev.unlimitednametags.api.NametagCustomAnimationHandler;
 import org.alexdev.unlimitednametags.api.NametagCustomGlowHandler;
 import org.alexdev.unlimitednametags.api.UNTPaperAPI;
@@ -18,6 +17,7 @@ import org.alexdev.unlimitednametags.commands.UntBrigadierCommands;
 import org.alexdev.unlimitednametags.config.ConfigManager;
 import org.alexdev.unlimitednametags.config.Formatter;
 import org.alexdev.unlimitednametags.config.GlowOverride;
+import org.alexdev.unlimitednametags.format.NametagMiniMessage;
 import org.alexdev.unlimitednametags.glow.DefaultNametagGlowRegistrations;
 import org.alexdev.unlimitednametags.hook.*;
 import org.alexdev.unlimitednametags.hook.hat.HatHook;
@@ -412,7 +412,7 @@ public final class UnlimitedNameTags extends JavaPlugin implements UnlimitedName
         if (audience instanceof CommandSender sender) {
             return formatTextForNametag(sender, text);
         }
-        return MiniMessage.miniMessage().deserialize(text);
+        return NametagMiniMessage.deserialize(text);
     }
 
     @Override
@@ -420,9 +420,9 @@ public final class UnlimitedNameTags extends JavaPlugin implements UnlimitedName
         if (audience instanceof Player player) {
             return getHook(MiniPlaceholdersHook.class)
                     .map(h -> h.format(text, player))
-                    .orElseGet(() -> MiniMessage.miniMessage().deserialize(text));
+                    .orElseGet(() -> NametagMiniMessage.deserialize(text));
         }
-        return MiniMessage.miniMessage().deserialize(text);
+        return NametagMiniMessage.deserialize(text);
     }
 
     @Override

@@ -44,6 +44,7 @@ dependencies {
 
     implementation(libs.universalScheduler)
     implementation(libs.libbyBukkit)
+    implementation(libs.craftkitPaper)
 
     compileOnly(libs.gson)
     compileOnly(libs.feather)
@@ -62,6 +63,7 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("me.tofaa.entitylib", relocation + "entitylib")
     relocate("javax.annotation", relocation + "annotation")
     relocate("com.github.Anon8281.universalScheduler", relocation + "universalScheduler")
+    relocate("com.hera.craftkit", relocation + "craftkit")
     relocate("net.kyori.adventure.text.serializer", "io.github.retrooper.packetevents.adventure.serializer")
     relocate("net.byteflux.libby", relocation + "libby.bukkit")
 
@@ -85,6 +87,7 @@ tasks.named<ShadowJar>("shadowJar") {
         exclude(dependency("net.kyori:text"))
         exclude(dependency("net.kyori:adventure-text-serializer-gson"))
         exclude(dependency("net.kyori:adventure-text-serializer-json"))
+        exclude(dependency("net.kyori:adventure-text-minimessage"))
         exclude(dependency("org.apache.commons:commons-jexl3"))
         exclude(dependency("net.jodah:expiringmap"))
     }
